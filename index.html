@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Studio Booking</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<style type="text/css">
+		body{
+			background: #000;
+			width: 1180px;
+			margin: 0px auto;
+			color: #fff;
+		}
+		.studio-booking-section{
+			display: flex;
+			flex-wrap: wrap;
+		    font-family: 'MaisonNeueMono';
+		    padding: 60px 0px;
+		}
+		.studio-booking-left{
+			width: 60%;
+			position: relative;
+		}
+		.studio-booking-left:after{
+			content: '';
+			width: 1px;
+			height: 100%;
+			background: #fff;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.studio-booking-left:before{
+			content: '';
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			position: absolute;
+			background: #fff;
+			top: 0;
+			right: -4px;
+		}
+		.studio-booking-right{
+			width: 40%;
+		}
+		.studio-booking-content{
+			padding:0px 20px;
+		}
+		.studio-booking-form{
+			padding-right: 100px;
+		}
+		.form-card-flex{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.form-card-flex .form-field.hours-form{width: 40%;}
+		.form-card-flex .form-field.form-divider{
+			width: 10%;
+			background: #fff;
+			height: 2px;
+			margin-top: 40px;
+		}
+		.form-card-flex .form-field.hours-to{width: 40%;}
+		.form-field input, select{
+			width: 100%;
+			display: block;
+			padding: 5px 10px;
+			border-radius: 50px;  
+		 	outline: none;
+		  	border: none;
+		  	color: #3f1cff;
+		}
+		.form-field input{
+			width: 97%;
+		}
+		.form-field select{
+		  -webkit-appearance: none;
+		  -moz-appearance: none;
+		  position: relative;
+	      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='blue'><polygon points='0,0 100,0 50,50'/></svg>");
+		  background-repeat: no-repeat;
+  		  background-position: right 1rem top 0.6rem;
+		  background-size: 1em;	
+		 }
+
+		.form-field .form-select:after{
+			content:'arrow';
+		}
+		.form-field label{
+			width: 100%;
+			display: block;
+			padding: 10px 0px;
+			font-family: 'MaisonNeueMono';
+			font-size: 16px;
+			line-height: 20px;
+			margin-top: 10px;
+		}
+
+		.form-field .btn-booking{
+			padding: 10px 30px;
+			border-radius: 50px;
+			background-color: #3f1cff;
+			color: #fff;
+			border: 1px solid #fff;
+			margin-top: 20px;
+			font-size: 14px;
+		}
+		.studio-text h2{
+			font-weight: 500;
+			font-size: 24px;
+			line-height: 34px;
+		    margin: 0px;
+		    padding: 0px;
+		}
+
+		.studio-text p{
+		    font-size: 14px;
+		    margin: 0px;
+		    padding: 0px;
+		    line-height: 14px;
+		}
+
+		/*===========================
+		* Booking Details
+		*============================*/
+
+		.details-title{
+			text-align: center;
+		}
+		.details-title h3{
+			font-size: 16px;
+		}
+
+		.booking-details{
+		    border: 1px solid #fff;
+		    padding: 40px 20px;
+		    border-radius: 15px;
+		    margin-top: 30px;
+		}
+
+		.booking-box {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		.booking-box .booking-label{
+			width: 20%;
+			font-size: 16px;
+		}
+		.booking-box .booking-content{
+			background-color: #3f1cff;
+			padding: 5px 15px;
+			border-radius: 50px;
+   			font-size: 14px;
+		}
+		.book-now-right{
+			text-align: center;
+		}
+		.book-now-right .booking-form p{
+			font-size: 14px;
+		}
+
+		.book-now-right .booking-form a{
+			color: #fff;
+			font-size: 14px;
+		}
+		.booking-date #datepicker{
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 20px;
+			margin-top: 20px;
+		}
+
+		.booking-date #datepicker table{
+			width: 100%;
+		}
+		.booking-date #datepicker table thead{
+			color:#3f1cff;
+		}
+		.booking-date #datepicker table tbody{
+			text-align: center;
+		}
+		.booking-date #datepicker table tbody tr td{
+			padding: 10px;
+		}
+		
+		.booking-date #datepicker table tbody tr td a{
+			text-decoration: none;
+		}
+		.booking-date #datepicker .ui-datepicker-title{
+		    text-align: center;
+		    color: #3f1cff;
+		    font-size: 18px;
+		    font-weight: 600;
+		    margin-top: -20px;
+		    margin-bottom: 20px;
+		}
+		.booking-date #datepicker .ui-datepicker-header a{
+			color:#3f1cff;
+		}
+		.booking-date #datepicker .ui-datepicker-next{
+			float: right;
+		}
+		.booking-date #datepicker .ui-datepicker-current-day{
+			background-color:#3f1cff;
+   			border-radius: 50px;
+		}
+		.booking-date #datepicker .ui-datepicker-current-day a{
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+<section class="studio-booking-section">
+	<div class="studio-booking-left">
+		<div class="studio-booking-content">
+			<div class="studio-text">
+				<h2>Studio Booking</h2>
+				<p>Space Rental</p>
+			</div>
+			<div class="studio-booking-form">
+				<form class="booking-form">
+					<div class="form-field booking-date">
+					  <div id="datepicker"></div>
+					</div>
+
+					<div class="form-card-flex form-field">
+						<div class="form-field hours-form">
+							<label class="form-label">Hours from:</label>
+						    <select class="form-select">
+							   <option value="0800hours">0800hrs</option>
+							   <option value="1300hrs">1300hrs</option>
+							</select>
+						</div>
+						<div class="form-field form-divider">
+							<span></span>
+						</div>
+						<div class="form-field hours-to">
+							<label class="form-label">Hours to:</label>
+						    <select class="form-select">
+							   <option value="1300hrs">1300hrs</option>
+							   <option value="0800hours">0800hrs</option>
+							   <i class="fas fa-caret-down"></i>
+							</select>
+						</div>
+					</div> <!-- end -->
+
+					<div class="form-field ">
+						<label class="form-label">Package:</label>
+					    <select class="form-select">
+						   <option value="Cyclorama Wall + Living Room S$150/H">Cyclorama Wall + Living Room S$150/H</option>
+						   <option value="Cyclorama Wall + Living Room S$150/H">Cyclorama Wall + Living Room S$150/H</option>
+						</select>
+					</div>
+
+					<div class="form-field ">
+						<label class="form-label">Package:</label>
+					    <select class="form-select">
+						   <option value="Cyclorama Wall + Living Room S$150/H">Cyclorama Wall + Living Room S$150/H</option>
+						   <option value="Cyclorama Wall + Living Room S$150/H">Cyclorama Wall + Living Room S$150/H</option>
+						</select>
+					</div>
+					<div class="form-field">
+						<label class="form-label">Purpose of Booking:</label>
+					    <select class="form-select">
+						   <option value="Photoshoot">Photoshoot</option>
+						   <option value="Photoshoot">Photoshoot</option>
+						</select>
+					</div>
+
+					<div class="form-field">
+						<label class="form-label">Name:</label>
+						<input type="text" name="name" placeholder="">
+					</div>
+					<div class="form-field ">
+						<label class="form-label">Contact Number:</label>
+						<input type="text" name="contact number" placeholder="">
+					</div>
+					<div class="form-field ">
+						<label class="form-label">Company:</label>
+						<input type="text" name="company" placeholder="">
+					</div>
+					<div class="form-field ">
+						<label class="form-label">Notes to studio:</label>
+						<input type="text" name="notes" placeholder="">
+					</div>
+
+					<div class="form-field ">
+						<button type="button" class="btn-booking"> Add Booking</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<div class="studio-booking-right">
+		<div class="studio-booking-content">
+			<div class="details-title">
+				<h3>Booking Details</h3>
+			</div>
+			<div class="booking-details">
+				<div class="booking-box">
+					<div class="booking-label">Date:</div>
+					<div class="booking-content">21/10/2022</div>
+				</div>
+				<div class="booking-box">
+					<div class="booking-label">Hours:</div>
+					<div class="booking-content"> 0800-1300 (5hrs)</div>
+				</div>
+				<div class="booking-box">
+					<div class="booking-label">Package:</div>
+					<div class="booking-content"> Cyclorama Wall + Living Room S$150/H</div>
+				</div>
+				<div class="booking-box">
+					<div class="booking-label">Price:</div>
+					<div class="booking-content"> * SGD$750</div>
+				</div>
+			</div>
+
+			<div class="book-now-right">
+				<form class="booking-form">
+					<p>*Prices shows are before GST surcharge & discount for >10h hrs</p>
+					<input type="checkbox" id="agree" name="agree" value="agree">
+		 			<label for="agree"> I agree to <a href="#"> Terms & Conditions</a> for booking
+					</label>
+					<div class="form-field ">
+						<button type="button" class="btn-booking">Book Now</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	<!-- end -->
+
+</section>
+<script type="text/javascript">
+$("#datepicker").datepicker( {
+  firstDay: 1,
+  prevText: '<i class="fas fa-long-arrow-alt-left"></i>',
+  nextText: '<i class="fas fa-long-arrow-alt-right"></i>',
+
+  onSelect: function() {
+    var dateText = $.datepicker.formatDate("MM dd, yy", $(this).datepicker("getDate"));
+    $('p.bgText').text(dateText);
+    }
+  
+});
+
+</script>
+</body>
+</html>
